@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -29,34 +31,32 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Ejemplo1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                Content()
+                GreetingPreview()
 
-                }
             }
         }
     }
-}
 
-@Preview(showBackground = true)
+    @Preview(showBackground = true)
+    @Composable
+    fun GreetingPreview(){
+       Content(mensaje1 = "Hello", mensaje2 = "Mundo")
+    }
 @Composable
-fun Content(){
-    Text(
-        text = "Hola Jetpack Compose",
-        color = Color.Magenta,
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
-        textAlign = TextAlign.Center,
-        fontStyle = FontStyle.Italic,
-        textDecoration = TextDecoration.Underline,
-        modifier = Modifier.padding().background(Color.Blue),
+    fun Content(mensaje1:String, mensaje2:String){
+    Column { //Row{
+        Text(mensaje1,
+            fontSize = 50.sp)
+        Text(mensaje2,
+            lineHeight = 30.sp) //lineHeight es para la separacion entre las palabras
+        Text("Damaris",
+            fontWeight = FontWeight.Bold,
+            fontSize = 50.sp,
+            lineHeight = 32.sp)
+    }
+    }
 
-        )
-    /*MODIFICADORES
-    * De posicionamiento=width, height, top, bottom, start, end
-    *
-    *
-    *
-    * */
 }
+
+
 
