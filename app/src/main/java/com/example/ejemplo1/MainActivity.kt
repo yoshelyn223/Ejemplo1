@@ -4,13 +4,25 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ejemplo1.ui.theme.Ejemplo1Theme
 
@@ -20,27 +32,116 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Ejemplo1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "TEC",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                GreetingPreview()
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(text = "Feliz Cumpleaños $name!", modifier = modifier,
-                fontSize = 30.sp, lineHeight = 116.sp)
-}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    Ejemplo1Theme {
-        Greeting("TEC")
+    SetContent()
+}
+
+@Composable
+fun SetContent(){
+Column {
+    SimpleButton()
+    ButtonWithColor()
+    ButtonWithTwoTextView()
+    ButtonWithIcon()
+    ButtonWithRectangleShape()
+    ButtonWithRoundCornerShape()
+    ButtonWithCutCornerShape()
+    ButtonWithBorder()
+}
+}
+
+@Composable
+fun SimpleButton() {
+
+    Button(onClick = {
+        //your onclick code here
+    }) {
+        Text(text = "Simple Button")
+    }
+
+}
+
+@Composable
+fun ButtonWithColor(){
+
+    Button(onClick = {
+        //your onclick code
+    },
+        colors = ButtonDefaults.buttonColors(Color.Yellow))
+
+    {
+        Text(text = "Button with yellow background",color = Color.Black, fontSize = 20.sp)
+
+}
+}
+
+@Composable
+fun ButtonWithTwoTextView() {
+    Button(onClick = {
+        //your onclick code here
+    }) {
+        Text(text = "Click ", color = Color.Magenta)
+        Text(text = "Here", color = Color.Green)
     }
 }
+
+@Composable
+fun ButtonWithIcon() {
+    Button(onClick = {}) {
+        Image(
+            painterResource(id = R.drawable.shopping_cart),
+            contentDescription ="Cart button icon",
+            modifier = Modifier.size(20.dp))
+
+        Text(text = "Add to cart",Modifier.padding(start = 10.dp))
+    }
+}
+
+//Forma de Rectangulo:
+
+@Composable
+fun ButtonWithRectangleShape() {
+    Button(onClick = {}, shape = RectangleShape) {
+        Text(text = "Forma de Rectangulo")
+    }
+}
+//Esquina Redondeada:
+
+@Composable
+fun ButtonWithRoundCornerShape() {
+    Button(onClick = {}, shape = RoundedCornerShape(20.dp)) {
+        Text(text = "Esquina redondeada")
+    }
+}
+
+//Esquina con terminacion recta:
+
+@Composable
+fun ButtonWithCutCornerShape() {
+    Button(onClick = {}, shape = CutCornerShape(10)) {
+        Text(text = "Esquina en corte")
+    }
+}
+
+@Composable
+fun ButtonWithBorder() {
+    Button(
+        onClick = {
+            //codigo
+        },
+        border = BorderStroke(1.dp, Color.Red),
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Red)
+    ) {
+        Text(text = "Boton con borde", color = Color.DarkGray)
+    }
+}
+
