@@ -1,5 +1,6 @@
 package com.example.ejemplo1
 
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,6 +9,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -19,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.ejemplo1.ui.theme.Ejemplo1Theme
@@ -43,6 +49,8 @@ fun GreetingPreview(){
         TextFieldSencillo()
         TextFieldPlaceHolder()
         TextFieldKeyboard()
+        OutLineTextFieldSample()
+        TextFieldWithIcons()
     }
 }
 
@@ -87,4 +95,32 @@ Column {
     )
     Text("Tu nombre es: $text")
 }
+}
+
+@Composable
+fun OutLineTextFieldSample() {
+    var text by remember { mutableStateOf("") }
+    Column{
+    OutlinedTextField(
+        value = text,
+        onValueChange = {newText -> text = newText},
+        label = { Text("Enter Your Name") }
+    )
+        Text("Tu nombre es: $text")
+    }
+}
+
+@Composable
+fun TextFieldWithIcons() {
+Column {
+    var text by remember { mutableStateOf("") }
+    return OutlinedTextField(
+        value = text,
+        leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "emailIcon") },
+        onValueChange = {newText -> text = newText},
+        label = { Text(text = "Email address") },
+        placeholder = { Text(text = "Enter your e-mail") },
+    )
+    Text("Tu Gmail es: $text");
+    }
 }
