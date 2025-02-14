@@ -4,13 +4,28 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ejemplo1.ui.theme.Ejemplo1Theme
 
@@ -20,27 +35,132 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Ejemplo1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "TEC",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                GreetingPreview()
+
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(text = "Feliz Cumpleaños $name!", modifier = modifier,
-                fontSize = 30.sp, lineHeight = 116.sp)
-}
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    Ejemplo1Theme {
-        Greeting("TEC")
+fun GreetingPreview(){
+    Column {
+        //Content1()
+        //Content2()
+        //Content3()
+        //Content4()
+       // Content5()
+        //Content6()
+        //Content7()
+      //  Context8()
+        Content9()
+    }
+
+}
+
+@Composable
+fun Content1(){
+    Text("Content 1",
+        Modifier
+        .padding(32.dp)
+        .background(color = Color.Green)
+    )
+}
+
+@Composable
+fun Content2(){
+    Text("Content 2",
+        color = Color.White,
+        modifier = Modifier
+            .padding(32.dp)
+            .background(Color.Blue)
+            .width(250.dp)
+            .height(100.dp)
+    )
+
+}
+
+@Composable
+fun Content3(){
+    Text("Content 3",
+        color = Color.White,
+        modifier = Modifier
+            .background(Color.Cyan)
+            .size(width = 250.dp, height = 100.dp)
+    )
+
+}
+
+@Composable
+fun Content4(){
+    Text("Content 4",
+        color = Color.White,
+        modifier = Modifier
+            .background(Color.Gray)
+            .padding(Dp(10f))
+            .fillMaxWidth(1f))
+    }
+
+@Composable
+fun Content5(){
+    Text("Content 5",
+        color = Color.White,
+        modifier = Modifier
+            .background(Color.Green)
+            .fillMaxHeight(0.75f) //75% area fill
+    )
+}
+
+@Composable
+fun Content6(){
+    Box(
+        Modifier
+            .size(250.dp)
+            .alpha(0.2f)//50% opacity
+            .background(Color.Red)
+    )
+}
+
+@Composable
+fun Content7() {
+    Box(
+        Modifier
+            .rotate(65f)
+            .size(250.dp)
+            .background(Color.Red
+            )
+            .scale(scaleX = 2f, scaleY = 3f)
+            .size(200.dp, 200.dp
+    )
+    )
+}
+
+@Composable
+fun Context8() {
+    Box(
+        Modifier
+            .scale(scaleX = 2f, scaleY = 3f)
+            .size(200.dp, 200.dp)
+    )
+}
+
+@Composable
+fun Content9(){
+    Row() {
+        Column(
+            Modifier.weight(1f).background(Color.Red)){
+            Text(text = "Weight = 1", color = Color.White)
+        }
+        Column(
+            Modifier.weight(1f).background(Color.Blue)){
+            Text(text = "Weight = 1", color = Color.White)
+        }
+        Column(
+            Modifier.weight(2f).background(Color.Green)
+        ) {
+            Text(text = "Weight = 2")
+        }
+
     }
 }
