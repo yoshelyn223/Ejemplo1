@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,11 +16,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
@@ -50,11 +53,13 @@ fun GreetingPreview(){
         //Content2()
         //Content3()
         //Content4()
-       // Content5()
+       //Content5()
         //Content6()
         //Content7()
       //  Context8()
-        Content9()
+        //Content9()
+      //  Content10()
+        Content11()
     }
 
 }
@@ -108,7 +113,8 @@ fun Content5(){
         color = Color.White,
         modifier = Modifier
             .background(Color.Green)
-            .fillMaxHeight(0.75f) //75% area fill
+            .fillMaxHeight(0.75f)
+            .fillMaxWidth(0.75f)//75% area fill
     )
 }
 
@@ -163,4 +169,29 @@ fun Content9(){
         }
 
     }
+}
+
+@Composable
+fun Content10() {
+    Text(
+        text = "Content 10",
+        modifier = Modifier
+            .padding(10.dp)
+            .background(Color.Yellow)
+            .border(2.dp,Color.Red)
+            .padding(10.dp)
+    )
+}
+
+@Composable
+fun Content11() {
+    Text(
+        text = "Content 11",
+        color = Color.White,
+        modifier = Modifier
+            .padding(Dp(10f))
+            .clip(RoundedCornerShape(25.dp))
+            .background(Color.Blue)
+            .padding(Dp(15f))
+    )
 }
