@@ -1,6 +1,7 @@
 package com.example.ejemplo1
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -8,6 +9,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+//import androidx.compose.foundation.layout.FlowRowScopeInstance.align
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,10 +27,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,16 +44,18 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Ejemplo1Theme {
-                GreetingPreview()
+                Content()
             }
         }
     }
 }
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun GreetingPreview(){
-    Fondo()
+    Content()
+/*    Fondo()
+
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -66,51 +72,159 @@ fun GreetingPreview(){
             Button()
         }
     }
+*/
+
+
 
 }
 
 @Composable
-fun Fondo() {
+fun Content(){
+    var numero1 by remember { mutableStateOf(TextFieldValue ("")) }
+    var numero2 by remember { mutableStateOf(TextFieldValue ("")) }
+    var resultado by remember { mutableStateOf(0) }
+
+    Column {
+        Box {
+            Image(
+                painter = painterResource(id = R.drawable.fondoescuela),
+                contentDescription = "Fondo Escuela",
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+            TextField(
+                value = numero1,
+                onValueChange = {numero1 = it},
+                label = { ("Teclea un valor") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                modifier = Modifier
+                    .padding(20.dp)
+                    .align(Alignment.CenterHorizontally)
+
+
+            )
+
+
+            TextField(
+                value = numero2,
+                onValueChange = {numero2 = it},
+                label = { ("Teclea un valor") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                modifier = Modifier
+                    .padding(20.dp)
+                    .align(Alignment.CenterHorizontally)
+
+
+            )
+
+        Button(
+            onClick = {
+                val num1 = numero1.text.toIntOrNull() ?: 0
+                val num2 = numero2.text.toIntOrNull() ?: 0
+                resultado = num1 + num2
+
+            },
+
+            modifier = Modifier
+                .padding(20.dp)
+                .align(Alignment.CenterHorizontally)
+            ){
+            Text(text = "Calcular")
+
+        }
+
+
+    }
+    Text(text = "Resultado es:  ", color = Color.Magenta)
+
+}*/
+@Preview(showBackground = true)
+
+@Composable
+fun Content(){
+    Column {
+        Backimage()
+
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ){
+                ButtonCalculate()
+            }
+        }
+
+    }
+}
+
+@Composable
+fun Backimage(){
     Image(
         painter = painterResource(id = R.drawable.fondoescuela),
-        contentDescription = "Fondo Escuela",
+        contentDescription = "Mustang background",
         modifier = Modifier.fillMaxWidth()
     )
 }
 
 @Composable
-fun TextField1() {
+fun TextField1():TextFieldValue {
     var text by remember { mutableStateOf(TextFieldValue("")) }
     TextField(
         value = text,
         onValueChange = {
             text = it
         },
-        placeholder = { Text(text = "Valor 1") },
+        label = { Text(text = "Valor 1") },
+        placeholder = { Text(text = "Teclea el primer valor") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         modifier = Modifier.fillMaxWidth(0.8f)
     )
+    return text
 }
 
 @Composable
-fun TextField2 (){
+fun TextField2():TextFieldValue{
     var text by remember { mutableStateOf(TextFieldValue(""))}
     TextField(
         value = text,
         onValueChange = {
             text = it
         },
-        placeholder = { Text(text = "Valor 2")},
+        label = { Text(text = "Valor 1") },
+        placeholder = { Text(text = "Teclea el primer valor") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         modifier = Modifier.fillMaxWidth(0.8f)
     )
+    return text
 }
 
-@Composable
-fun Button(){
-    Button(onClick = {
 
-    }) {
+@Composable
+fun ButtonCalculate(){
+    var numero1 = TextField1()
+    Spacer(modifier = Modifier.height(12.dp))
+    var numero2 = TextField2()
+    Spacer(modifier = Modifier.height(12.dp))
+    var resultado by remember { mutableStateOf(0)}
+
+    Button(
+        onClick = {
+            val num1 = numero1.text.toInt()
+            val num2 = numero2.text.toInt()
+            resultado = num1 + num2
+        }){
         Text(text = "Calcular")
     }
+
+    Text(
+        text = "Resultado: $resultado",
+        fontSize = 24.sp,
+        textAlign = TextAlign.Center,
+        modifier = Modifier
+            .padding(28.dp)
+    )
 }
