@@ -50,101 +50,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-/*@Preview(showBackground = true)
-@Composable
-fun GreetingPreview(){
-    Content()
-/*    Fondo()
-
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ){
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ){
-
-            TextField1()
-            Spacer(modifier = Modifier.height(12.dp))
-            TextField2()
-            Spacer(modifier = Modifier.height(18.dp))
-            Button()
-        }
-    }
-*/
-
-
-
-}
-
-@Composable
-fun Content(){
-    var numero1 by remember { mutableStateOf(TextFieldValue ("")) }
-    var numero2 by remember { mutableStateOf(TextFieldValue ("")) }
-    var resultado by remember { mutableStateOf(0) }
-
-    Column {
-        Box {
-            Image(
-                painter = painterResource(id = R.drawable.fondoescuela),
-                contentDescription = "Fondo Escuela",
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
-
-            TextField(
-                value = numero1,
-                onValueChange = {numero1 = it},
-                label = { ("Teclea un valor") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier
-                    .padding(20.dp)
-                    .align(Alignment.CenterHorizontally)
-
-
-            )
-
-
-            TextField(
-                value = numero2,
-                onValueChange = {numero2 = it},
-                label = { ("Teclea un valor") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier
-                    .padding(20.dp)
-                    .align(Alignment.CenterHorizontally)
-
-
-            )
-
-        Button(
-            onClick = {
-                val num1 = numero1.text.toIntOrNull() ?: 0
-                val num2 = numero2.text.toIntOrNull() ?: 0
-                resultado = num1 + num2
-
-            },
-
-            modifier = Modifier
-                .padding(20.dp)
-                .align(Alignment.CenterHorizontally)
-            ){
-            Text(text = "Calcular")
-
-        }
-
-
-    }
-    Text(text = "Resultado es:  ", color = Color.Magenta)
-
-}*/
 @Preview(showBackground = true)
-
 @Composable
 fun Content(){
     Column {
-        Backimage()
+       Backimage()
 
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -164,8 +74,8 @@ fun Content(){
 @Composable
 fun Backimage(){
     Image(
-        painter = painterResource(id = R.drawable.fondoescuela),
-        contentDescription = "Mustang background",
+        painter = painterResource(R.drawable.descuentos),
+        contentDescription = "DESCUENTOS",
         modifier = Modifier.fillMaxWidth()
     )
 }
@@ -178,8 +88,8 @@ fun TextField1():TextFieldValue {
         onValueChange = {
             text = it
         },
-        label = { Text(text = "Valor 1") },
-        placeholder = { Text(text = "Teclea el primer valor") },
+        label = { Text(text = "Precio") },
+        placeholder = { Text(text = "Teclea el precio de tu producto") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         modifier = Modifier.fillMaxWidth(0.8f)
     )
@@ -194,8 +104,8 @@ fun TextField2():TextFieldValue{
         onValueChange = {
             text = it
         },
-        label = { Text(text = "Valor 1") },
-        placeholder = { Text(text = "Teclea el primer valor") },
+        label = { Text(text = "Descuento") },
+        placeholder = { Text(text = "Teclea el descuento de tu producto") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         modifier = Modifier.fillMaxWidth(0.8f)
     )
@@ -209,19 +119,22 @@ fun ButtonCalculate(){
     Spacer(modifier = Modifier.height(12.dp))
     var numero2 = TextField2()
     Spacer(modifier = Modifier.height(12.dp))
-    var resultado by remember { mutableStateOf(0)}
+    var descuento by remember { mutableStateOf(0.0)}
+    var precioFinal by remember { mutableStateOf(0.0)}
 
     Button(
         onClick = {
-            val num1 = numero1.text.toInt()
-            val num2 = numero2.text.toInt()
-            resultado = num1 + num2
+            val precio = numero1.text.toDouble()
+            val descuento = numero2.text.toDouble()
+            val des = precio * (descuento/100)
+            precioFinal = precio - des
+
         }){
         Text(text = "Calcular")
     }
 
     Text(
-        text = "Resultado: $resultado",
+        text = "Precio final: $precioFinal",
         fontSize = 24.sp,
         textAlign = TextAlign.Center,
         modifier = Modifier
