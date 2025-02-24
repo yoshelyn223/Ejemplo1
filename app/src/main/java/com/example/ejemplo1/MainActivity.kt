@@ -13,6 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.ejemplo1.ui.theme.Ejemplo1Theme
+import com.example.ejemplo1.views.ContentView
+import com.example.ejemplo1.views.DetailView
+import com.example.ejemplo1.views.HomeView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,27 +23,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Ejemplo1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "TEC",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                setContent{
+                    HomeView()
+                    //DetailView()
+                    //ContentView()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(text = "Feliz Cumpleaños $name!", modifier = modifier,
-                fontSize = 30.sp, lineHeight = 116.sp)
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Ejemplo1Theme {
-        Greeting("TEC")
     }
 }
