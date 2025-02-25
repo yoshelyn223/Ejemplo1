@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.example.ejemplo1.components.ActionButton
 import com.example.ejemplo1.ui.theme.Ejemplo1Theme
 import com.example.ejemplo1.views.ContentView
 import com.example.ejemplo1.views.DetailView
@@ -24,11 +25,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             Ejemplo1Theme {
                 setContent{
-                    HomeView()
+                  //GreetingPreview()
                     //DetailView()
-                    //ContentView()
+                    HomeView()
                 }
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview(){
+   // HomeView()
+    DetailView()
 }

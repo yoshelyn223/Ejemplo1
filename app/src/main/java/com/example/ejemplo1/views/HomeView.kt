@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import androidx.annotation.ContentView
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -15,6 +17,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.example.ejemplo1.components.ActionButton
+import com.example.ejemplo1.components.TitleBar
+import com.example.ejemplo1.components.TitleView
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -23,12 +28,15 @@ fun HomeView(){
     Scaffold (
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(text = "HOME VIEW", color = Color.White) },
+                title = { TitleBar("HOME VIEW") },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = Color.Red)
             )
+        },
+        floatingActionButton = {
+            ActionButton(Color.Blue)
         }
     ){
-        ContentView()
+        com.example.ejemplo1.views.ContentView()
     }
 }
 
@@ -36,30 +44,17 @@ fun HomeView(){
 @Composable
 fun ContentView(){
     Column(
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+
     ) {
-        Text(text="Home")
+       TitleView("HOME")
     }
 }
 
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun DetailView(){
-    Scaffold (
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text(text = "DETAIL VIEW",
-                    color = Color.White) },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = Color.Red)
-            )
-        }
-    ){
-        ContentView()
-    }
-}
+
+
+
 
