@@ -26,8 +26,8 @@ class MainActivity : ComponentActivity() {
             Ejemplo1Theme {
                 setContent{
                   //GreetingPreview()
-                    //DetailView()
-                    HomeView()
+                    DetailView()
+                    //HomeView()
                 }
             }
         }

@@ -1,6 +1,7 @@
 package com.example.ejemplo1.views
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.example.ejemplo1.components.MainButton
 import com.example.ejemplo1.components.TitleBar
 import com.example.ejemplo1.components.TitleView
 
@@ -41,5 +43,8 @@ fun ContentView2(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
        TitleView("Home")
+        MainButton("Generico", Color.Red, Color.Black) {
+            Log.d("ya", "Soy un boton generico")
+        }
     }
 }
