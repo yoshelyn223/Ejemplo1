@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
 import com.example.ejemplo1.components.MainButton
 import com.example.ejemplo1.components.TitleBar
 import com.example.ejemplo1.components.TitleView
@@ -22,7 +23,7 @@ import com.example.ejemplo1.components.TitleView
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailView(){
+fun DetailView(navController: NavController){
     Scaffold (
         topBar = {
             CenterAlignedTopAppBar(
@@ -31,20 +32,21 @@ fun DetailView(){
             )
         }
     ){
-        ContentView2()
+        ContentView2(navController)
     }
 }
 
 @Composable
-fun ContentView2(){
+fun ContentView2(navController: NavController){
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
        TitleView("Home")
-        MainButton("Generico", Color.Red, Color.Black) {
-            Log.d("ya", "Soy un boton generico")
+        MainButton("Back", Color.Red, Color.Black) {
+            //Log.d("ya", "Soy un boton generico")
+            navController.popBackStack() //ya vamos a tener una vista sobre nuestra vista
         }
     }
 }
