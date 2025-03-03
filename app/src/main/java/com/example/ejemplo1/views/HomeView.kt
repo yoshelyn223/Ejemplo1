@@ -57,7 +57,7 @@ fun ContentView(navController: NavController){
         Spacers()
         MainButton("Back", Color.Red, Color.Black) {
             //Log.d("ya", "Soy un boton generico")
-            navController.navigate("Home")
+            navController.navigate("Detail")
 
         }
     }

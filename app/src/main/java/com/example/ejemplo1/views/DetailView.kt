@@ -6,6 +6,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -17,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.example.ejemplo1.components.MainButton
+import com.example.ejemplo1.components.MainIconButton
 import com.example.ejemplo1.components.TitleBar
 import com.example.ejemplo1.components.TitleView
 
@@ -28,7 +32,12 @@ fun DetailView(navController: NavController){
         topBar = {
             CenterAlignedTopAppBar(
                 title = { TitleBar("DETAIL VIEW") },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = Color.Blue)
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = Color.Blue),
+                navigationIcon = {
+                    MainIconButton(Icons.AutoMirrored.Filled.ArrowBack) {
+                        navController.popBackStack()
+                    }
+                }
             )
         }
     ){
@@ -43,8 +52,8 @@ fun ContentView2(navController: NavController){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-       TitleView("Home")
-        MainButton("Back", Color.Red, Color.Black) {
+       TitleView("DETAIL")
+        MainButton("Back", Color.Blue, Color.White) {
             //Log.d("ya", "Soy un boton generico")
             navController.popBackStack() //ya vamos a tener una vista sobre nuestra vista
         }
