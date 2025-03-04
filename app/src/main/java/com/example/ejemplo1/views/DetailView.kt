@@ -2,15 +2,20 @@ package com.example.ejemplo1.views
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -18,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.ejemplo1.components.MainButton
 import com.example.ejemplo1.components.MainIconButton
@@ -46,16 +52,74 @@ fun DetailView(navController: NavController){
 }
 
 @Composable
-fun ContentView2(navController: NavController){
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-       TitleView("DETAIL")
-        MainButton("Back", Color.Blue, Color.White) {
-            //Log.d("ya", "Soy un boton generico")
-            navController.popBackStack() //ya vamos a tener una vista sobre nuestra vista
+private fun ContentView2(navController: NavController){ //fun ContentView2(navController: NavController){
+//    Column(
+//        modifier = Modifier.fillMaxSize(),
+//        verticalArrangement = Arrangement.Center,
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//       TitleView("DETAIL")
+//        MainButton("Back", Color.Blue, Color.White) {
+//            //Log.d("ya", "Soy un boton generico")
+//            navController.popBackStack() //ya vamos a tener una vista sobre nuestra vista
+//        }
+//    }
+    LazyColumn {
+        item {
+            Text("Item 1",
+                modifier =  Modifier.padding(64.dp), //tama;os de texto
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+
+        item {
+            Text("Item 2",
+                modifier =  Modifier.padding(64.dp),
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+
+        item {
+            Text("Item 3",
+                modifier =  Modifier.padding(64.dp),
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+
+        item {
+            Text("Item 4",
+                modifier =  Modifier.padding(64.dp),
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+
+        item {
+            Text("Item 5",
+                modifier =  Modifier.padding(64.dp),
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+
+        item {
+            Text("Item 6",
+                modifier =  Modifier.padding(64.dp),
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+
+        item {
+            Text("Item 7",
+                modifier =  Modifier.padding(64.dp),
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+
+        item {
+            Text("Item 8",
+                modifier =  Modifier.padding(64.dp),
+                style = MaterialTheme.typography.bodyLarge
+            )
         }
     }
+
 }
