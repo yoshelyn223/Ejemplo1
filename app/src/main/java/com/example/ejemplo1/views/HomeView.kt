@@ -28,7 +28,7 @@ import com.example.ejemplo1.components.TitleView
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeView(navController: NavController){
+fun HomeView(navController: NavController, id:Int){
     Scaffold (
         topBar = {
             CenterAlignedTopAppBar(
@@ -40,13 +40,14 @@ fun HomeView(navController: NavController){
             ActionButton(Color.Blue)
         }
     ){
-        com.example.ejemplo1.views.ContentView(navController)
+        com.example.ejemplo1.views.ContentView(navController, id)
     }
 }
 
 
 @Composable
-fun ContentView(navController: NavController){
+fun ContentView(navController: NavController, id:Int){
+   val id = 123;
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -57,7 +58,7 @@ fun ContentView(navController: NavController){
         Spacers()
         MainButton("Back", Color.Red, Color.Black) {
             //Log.d("ya", "Soy un boton generico")
-            navController.navigate("Detail")
+            navController.navigate("Detail/${id}")
 
         }
     }

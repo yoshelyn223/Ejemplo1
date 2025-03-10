@@ -33,7 +33,7 @@ import com.example.ejemplo1.components.TitleView
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailView(navController: NavController){
+fun DetailView(navController: NavController, id:Int){
     Scaffold (
         topBar = {
             CenterAlignedTopAppBar(
@@ -47,12 +47,12 @@ fun DetailView(navController: NavController){
             )
         }
     ){
-        ContentView2(navController)
+        ContentView2(navController, id)
     }
 }
 
 @Composable
-private fun ContentView2(navController: NavController){ //fun ContentView2(navController: NavController){
+private fun ContentView2(navController: NavController, id:Int){ //fun ContentView2(navController: NavController){
 //    Column(
 //        modifier = Modifier.fillMaxSize(),
 //        verticalArrangement = Arrangement.Center,
@@ -64,59 +64,60 @@ private fun ContentView2(navController: NavController){ //fun ContentView2(navCo
 //            navController.popBackStack() //ya vamos a tener una vista sobre nuestra vista
 //        }
 //    }
+
     LazyColumn {
         item {
-            Text("Item 1",
-                modifier =  Modifier.padding(64.dp), //tama;os de texto
+            Text(text = id.toString(),
+                modifier =  Modifier.padding(150.dp), //tama;os de texto
                 style = MaterialTheme.typography.bodyLarge
             )
         }
 
         item {
-            Text("Item 2",
-                modifier =  Modifier.padding(64.dp),
+            Text(text = id.toString(),
+                modifier =  Modifier.padding(150.dp),
                 style = MaterialTheme.typography.bodyLarge
             )
         }
 
         item {
-            Text("Item 3",
-                modifier =  Modifier.padding(64.dp),
+            Text(text = id.toString(),
+                modifier =  Modifier.padding(150.dp),
                 style = MaterialTheme.typography.bodyLarge
             )
         }
 
         item {
-            Text("Item 4",
-                modifier =  Modifier.padding(64.dp),
+            Text(text = id.toString(),
+                modifier =  Modifier.padding(150.dp),
                 style = MaterialTheme.typography.bodyLarge
             )
         }
 
         item {
-            Text("Item 5",
-                modifier =  Modifier.padding(64.dp),
+            Text(text = id.toString(),
+                modifier =  Modifier.padding(150.dp),
                 style = MaterialTheme.typography.bodyLarge
             )
         }
 
         item {
-            Text("Item 6",
-                modifier =  Modifier.padding(64.dp),
+            Text(text = id.toString(),
+                modifier =  Modifier.padding(150.dp),
                 style = MaterialTheme.typography.bodyLarge
             )
         }
 
         item {
-            Text("Item 7",
-                modifier =  Modifier.padding(64.dp),
+            Text(text = id.toString(),
+                modifier =  Modifier.padding(150.dp),
                 style = MaterialTheme.typography.bodyLarge
             )
         }
 
         item {
-            Text("Item 8",
-                modifier =  Modifier.padding(64.dp),
+            Text(text = id.toString(),
+                modifier =  Modifier.padding(150.dp),
                 style = MaterialTheme.typography.bodyLarge
             )
         }
